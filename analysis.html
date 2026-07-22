@@ -79,7 +79,25 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>The model treats a heavy lifetime smoker and someone who tried 100 cigarettes decades ago identically, even though they’re very different from a campaign-targeting perspective.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>The model has an integer or a discrete response variable.
+  It is recommended to switch to a dot-plot style, e.g.
+  `plot(check_model(model), type = "discrete_dots"`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Ignoring unknown labels:
+• size : ""</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The model treats a heavy lifetime smoker and someone who tried 100 cigarettes decades ago identically, even though they’re very different from a campaign-targeting perspective. Men have log-odds of being an ever-smoker about 0.54 higher than women, holding nothing else constant — a positive, statistically detectable difference since the interval excludes zero. Each additional year of age is associated with a 0.007 increase in log-odds of being an ever-smoker, but the interval barely crosses zero, so the effect isn’t clearly distinguishable from no effect. Adjusting for age, men have log-odds of being an ever-smoker about 0.545 higher than women — nearly unchanged from the sex-only model, confirming age and sex aren’t confounding each other.</p>
 
 </main>
 <!-- /main column -->

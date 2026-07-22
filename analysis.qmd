@@ -27,4 +27,17 @@ smokes |>
     scale_y_continuous(labels = scales::percent_format())
 ```
 
-The model treats a heavy lifetime smoker and someone who tried 100 cigarettes decades ago identically, even though they're very different from a campaign-targeting perspective.
+```{r}
+#| cache: true
+fit_smokes <- logistic_reg(engine = "glm") |> 
+  fit(smoke ~ age + sex, data = smokes)
+```
+
+```{r}
+library(easystats)
+check_predictions(extract_fit_engine(fit_smokes))
+```
+
+
+The model treats a heavy lifetime smoker and someone who tried 100 cigarettes decades ago identically, even though they're very different from a campaign-targeting perspective. Men have log-odds of being an ever-smoker about 0.54 higher than women, holding nothing else constant — a positive, statistically detectable difference since the interval excludes zero. 
+Each additional year of age is associated with a 0.007 increase in log-odds of being an ever-smoker, but the interval barely crosses zero, so the effect isn't clearly distinguishable from no effect. Adjusting for age, men have log-odds of being an ever-smoker about 0.545 higher than women — nearly unchanged from the sex-only model, confirming age and sex aren't confounding each other.

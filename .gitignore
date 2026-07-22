@@ -1,2 +1,4 @@
 analysis_files/
 Rplots.pdf
+analysis_cache/
+*_cache
