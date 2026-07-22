@@ -1,0 +1,26 @@
+---
+title: "Smokes"
+format: html
+execute:
+  echo: false
+---
+
+Smoking behavior in the U.S. has long been shaped by age and sex, with older adults and men historically more likely to have smoked. Using a 1,000-adult sample from NHANES 2009–2012, we ask: what is the difference in the probability of being an ever-smoker between a 30-year-old woman and a 70-year-old man?
+
+```{r}
+#| message: false
+library(tidyverse)
+library(primer.tutorials)
+```
+
+```{r}
+smokes |> 
+  mutate(age = 5 * (age %/% 5)) |> 
+  group_by(age, sex) |> 
+  summarize(prop = mean(smoke == "Yes"), .groups = "drop") |> 
+  ggplot(aes(x = age, y = prop)) +
+    geom_point() +
+    geom_smooth(se = FALSE) +
+    facet_wrap(~ sex) +
+    scale_y_continuous(labels = scales::percent_format())
+```
