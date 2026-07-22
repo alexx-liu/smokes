@@ -66,7 +66,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Smoking behavior in the U.S. has long been shaped by age and sex, with older adults and men historically more likely to have smoked. Using a 1,000-adult sample from NHANES 2009–2012, we ask: what is the difference in the probability of being an ever-smoker between a 30-year-old woman and a 70-year-old man?</p>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
@@ -97,7 +96,550 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>The model treats a heavy lifetime smoker and someone who tried 100 cigarettes decades ago identically, even though they’re very different from a campaign-targeting perspective. Men have log-odds of being an ever-smoker about 0.54 higher than women, holding nothing else constant — a positive, statistically detectable difference since the interval excludes zero. Each additional year of age is associated with a 0.007 increase in log-odds of being an ever-smoker, but the interval barely crosses zero, so the effect isn’t clearly distinguishable from no effect. Adjusting for age, men have log-odds of being an ever-smoker about 0.545 higher than women — nearly unchanged from the sex-only model, confirming age and sex aren’t confounding each other.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 7
+  term        estimate std.error statistic   p.value  conf.low conf.high
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept) -0.875     0.207       -4.22 0.0000241 -1.28       -0.471 
+2 age          0.00704   0.00387      1.82 0.0694    -0.000550    0.0147
+3 sexMale      0.545     0.129        4.22 0.0000245  0.292       0.798 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="autgwxgjrh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#autgwxgjrh table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#autgwxgjrh thead, #autgwxgjrh tbody, #autgwxgjrh tfoot, #autgwxgjrh tr, #autgwxgjrh td, #autgwxgjrh th {
+  border-style: none;
+}
+
+#autgwxgjrh p {
+  margin: 0;
+  padding: 0;
+}
+
+#autgwxgjrh .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#autgwxgjrh .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#autgwxgjrh .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#autgwxgjrh .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#autgwxgjrh .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#autgwxgjrh .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#autgwxgjrh .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#autgwxgjrh .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#autgwxgjrh .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#autgwxgjrh .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#autgwxgjrh .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#autgwxgjrh .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#autgwxgjrh .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#autgwxgjrh .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#autgwxgjrh .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#autgwxgjrh .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#autgwxgjrh .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#autgwxgjrh .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#autgwxgjrh .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#autgwxgjrh .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#autgwxgjrh .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#autgwxgjrh .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#autgwxgjrh .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#autgwxgjrh .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#autgwxgjrh .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#autgwxgjrh .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#autgwxgjrh .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#autgwxgjrh .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#autgwxgjrh .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#autgwxgjrh .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#autgwxgjrh .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#autgwxgjrh .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#autgwxgjrh .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#autgwxgjrh .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#autgwxgjrh .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#autgwxgjrh .gt_left {
+  text-align: left;
+}
+
+#autgwxgjrh .gt_center {
+  text-align: center;
+}
+
+#autgwxgjrh .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#autgwxgjrh .gt_font_normal {
+  font-weight: normal;
+}
+
+#autgwxgjrh .gt_font_bold {
+  font-weight: bold;
+}
+
+#autgwxgjrh .gt_font_italic {
+  font-style: italic;
+}
+
+#autgwxgjrh .gt_super {
+  font-size: 65%;
+}
+
+#autgwxgjrh .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#autgwxgjrh .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#autgwxgjrh .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#autgwxgjrh .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#autgwxgjrh .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#autgwxgjrh .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#autgwxgjrh .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#autgwxgjrh .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#autgwxgjrh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border">Logistic Regression: smoke ~ age + sex</td>
+</tr>
+<tr class="gt_col_headings even">
+<th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Term</th>
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Estimate</th>
+<th id="std.error" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">std.error</th>
+<th id="statistic" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">statistic</th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">p.value</th>
+<th id="conf.low" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Lower CI</th>
+<th id="conf.high" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Upper CI</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">(Intercept)</td>
+<td class="gt_row gt_right" headers="estimate">−0.875</td>
+<td class="gt_row gt_right" headers="std.error">0.20706652</td>
+<td class="gt_row gt_right" headers="statistic">-4.223399</td>
+<td class="gt_row gt_right" headers="p.value">2.406454e-05</td>
+<td class="gt_row gt_right" headers="conf.low">−1.283</td>
+<td class="gt_row gt_right" headers="conf.high">−0.471</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="term">age</td>
+<td class="gt_row gt_right" headers="estimate">0.007</td>
+<td class="gt_row gt_right" headers="std.error">0.00387489</td>
+<td class="gt_row gt_right" headers="statistic">1.816031</td>
+<td class="gt_row gt_right" headers="p.value">6.936564e-02</td>
+<td class="gt_row gt_right" headers="conf.low">−0.001</td>
+<td class="gt_row gt_right" headers="conf.high">0.015</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">sexMale</td>
+<td class="gt_row gt_right" headers="estimate">0.545</td>
+<td class="gt_row gt_right" headers="std.error">0.12906563</td>
+<td class="gt_row gt_right" headers="statistic">4.219643</td>
+<td class="gt_row gt_right" headers="p.value">2.446898e-05</td>
+<td class="gt_row gt_right" headers="conf.low">0.292</td>
+<td class="gt_row gt_right" headers="conf.high">0.798</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Estimate Pr(&gt;|z|)    S 2.5 % 97.5 % age    sex
+    0.340  &lt; 0.001 27.1 0.291  0.392  30 Female
+    0.406  0.00219  8.8 0.348  0.466  70 Female
+    0.470  0.29664  1.8 0.415  0.526  30 Male  
+    0.541  0.19845  2.3 0.479  0.601  70 Male  
+
+Type: invlink(link)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Estimate Std. Error    z Pr(&gt;|z|)    S  2.5 % 97.5 %
+    0.133     0.0311 4.27   &lt;0.001 15.6 0.0716  0.193
+
+Term: sex
+Type: response
+Comparison: Male - Female</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Smoking behavior in the U.S. has long been shaped by age and sex, with older adults and men historically more likely to have smoked. Using a 1,000-adult sample from NHANES 2009–2012, we ask: what is the difference in the probability of being an ever-smoker between a 30-year-old woman and a 70-year-old man? We model <code>smoke</code> as a Bernoulli outcome linked via logistic regression to age and sex, so predicted probabilities come from transforming the linear combination of these covariates through the logit link. The model treats a heavy lifetime smoker and someone who tried 100 cigarettes decades ago identically, even though they’re very different from a campaign-targeting perspective. Men have log-odds of being an ever-smoker about 0.54 higher than women, holding nothing else constant — a positive, statistically detectable difference since the interval excludes zero. Each additional year of age is associated with a 0.007 increase in log-odds of being an ever-smoker, but the interval barely crosses zero, so the effect isn’t clearly distinguishable from no effect. Adjusting for age, men have log-odds of being an ever-smoker about 0.545 higher than women — nearly unchanged from the sex-only model, confirming age and sex aren’t confounding each other. Comparing a 70-year-old man to a 30-year-old woman, we estimate a 13.3-percentage-point higher probability of ever having smoked (95% CI: 7.2% to 19.3%). Our estimate could be wrong for several reasons: the data comes from NHANES 2009–2012, while the question asks about the population today — smoking cohort patterns have shifted enough that the age and sex coefficients may no longer hold. The <code>smoke</code> variable also captures lifetime ever-smoker status rather than current smoking, so our model may overstate who a present-day cessation campaign should actually target. If more current data were available, refitting on a recent NHANES cycle would likely produce a smaller estimate, given falling smoking rates nationwide.</p>
 
 </main>
 <!-- /main column -->

@@ -5,14 +5,14 @@ execute:
   echo: false
 ---
 
-Smoking behavior in the U.S. has long been shaped by age and sex, with older adults and men historically more likely to have smoked. Using a 1,000-adult sample from NHANES 2009–2012, we ask: what is the difference in the probability of being an ever-smoker between a 30-year-old woman and a 70-year-old man?
-
 ```{r}
 #| message: false
 library(tidyverse)
 library(primer.tutorials)
 library(tidymodels)
 library(broom)
+library(marginaleffects)
+library(gt)
 ```
 
 ```{r}
@@ -38,6 +38,49 @@ library(easystats)
 check_predictions(extract_fit_engine(fit_smokes))
 ```
 
+```{r}
+tidy(fit_smokes, conf.int = TRUE)
+```
 
-The model treats a heavy lifetime smoker and someone who tried 100 cigarettes decades ago identically, even though they're very different from a campaign-targeting perspective. Men have log-odds of being an ever-smoker about 0.54 higher than women, holding nothing else constant — a positive, statistically detectable difference since the interval excludes zero. 
-Each additional year of age is associated with a 0.007 increase in log-odds of being an ever-smoker, but the interval barely crosses zero, so the effect isn't clearly distinguishable from no effect. Adjusting for age, men have log-odds of being an ever-smoker about 0.545 higher than women — nearly unchanged from the sex-only model, confirming age and sex aren't confounding each other.
+```{r}
+tidy(fit_smokes, conf.int = TRUE) |> 
+  gt() |> 
+  fmt_number(columns = c(estimate, conf.low, conf.high), decimals = 3) |> 
+  cols_label(
+    term = "Term",
+    estimate = "Estimate",
+    conf.low = "Lower CI",
+    conf.high = "Upper CI"
+  ) |> 
+  tab_header(title = "Logistic Regression: smoke ~ age + sex")
+```
+
+```{r}
+predictions(extract_fit_engine(fit_smokes),
+            newdata = data.frame(age = c(30, 70, 30, 70),
+                                 sex = c("Female", "Female", "Male", "Male")))
+```
+
+```{r}
+avg_comparisons(extract_fit_engine(fit_smokes), variables = "sex")
+```
+
+```{r}
+plot_predictions(extract_fit_engine(fit_smokes), condition = c("age", "sex"), draw = FALSE) |> 
+  ggplot(aes(x = age, y = estimate, color = sex, fill = sex)) +
+    geom_line(linewidth = 1) +
+    geom_ribbon(aes(ymin = conf.low, ymax = conf.high), alpha = 0.2, color = NA) +
+    scale_y_continuous(labels = scales::percent_format()) +
+    labs(
+      title = "Age and Sex Predict Ever-Smoker Status",
+      subtitle = "Men are consistently more likely than women to have ever smoked, across all ages",
+      x = "Age",
+      y = "Predicted Probability of Ever-Smoker Status",
+      color = "Sex",
+      fill = "Sex",
+      caption = "Source: NHANES 2009–2012, via primer.tutorials::smokes"
+    ) +
+    theme_minimal()
+```
+
+Smoking behavior in the U.S. has long been shaped by age and sex, with older adults and men historically more likely to have smoked. Using a 1,000-adult sample from NHANES 2009–2012, we ask: what is the difference in the probability of being an ever-smoker between a 30-year-old woman and a 70-year-old man? We model `smoke` as a Bernoulli outcome linked via logistic regression to age and sex, so predicted probabilities come from transforming the linear combination of these covariates through the logit link. The model treats a heavy lifetime smoker and someone who tried 100 cigarettes decades ago identically, even though they're very different from a campaign-targeting perspective. Men have log-odds of being an ever-smoker about 0.54 higher than women, holding nothing else constant — a positive, statistically detectable difference since the interval excludes zero. Each additional year of age is associated with a 0.007 increase in log-odds of being an ever-smoker, but the interval barely crosses zero, so the effect isn't clearly distinguishable from no effect. Adjusting for age, men have log-odds of being an ever-smoker about 0.545 higher than women — nearly unchanged from the sex-only model, confirming age and sex aren't confounding each other. Comparing a 70-year-old man to a 30-year-old woman, we estimate a 13.3-percentage-point higher probability of ever having smoked (95% CI: 7.2% to 19.3%). Our estimate could be wrong for several reasons: the data comes from NHANES 2009–2012, while the question asks about the population today — smoking cohort patterns have shifted enough that the age and sex coefficients may no longer hold. The `smoke` variable also captures lifetime ever-smoker status rather than current smoking, so our model may overstate who a present-day cessation campaign should actually target. If more current data were available, refitting on a recent NHANES cycle would likely produce a smaller estimate, given falling smoking rates nationwide.
