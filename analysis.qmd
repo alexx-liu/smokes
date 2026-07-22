@@ -11,6 +11,8 @@ Smoking behavior in the U.S. has long been shaped by age and sex, with older adu
 #| message: false
 library(tidyverse)
 library(primer.tutorials)
+library(tidymodels)
+library(broom)
 ```
 
 ```{r}
@@ -24,3 +26,5 @@ smokes |>
     facet_wrap(~ sex) +
     scale_y_continuous(labels = scales::percent_format())
 ```
+
+The model treats a heavy lifetime smoker and someone who tried 100 cigarettes decades ago identically, even though they're very different from a campaign-targeting perspective.
